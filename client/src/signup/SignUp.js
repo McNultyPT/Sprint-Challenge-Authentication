@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class SignUp extends Component {
     state = {
@@ -10,7 +11,7 @@ export default class SignUp extends Component {
         return (
             <div>
                 <h2>Sign Up</h2>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor='username' />
                         <input
                             name='username'
@@ -37,5 +38,20 @@ export default class SignUp extends Component {
 
     handleChanges = e => {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        const endpoint = 'http://localhost:3300/api/register';
+
+        axios
+            .post(endpoint, this.state)
+            .then(res => {
+                localStorage.setItem('username', this.state.username);
+                localStorage.setItem('password', this.state.password)
+                this.props.history.push('/login');
+            })
+            .catch(err => console.log(err));
     }
 }
