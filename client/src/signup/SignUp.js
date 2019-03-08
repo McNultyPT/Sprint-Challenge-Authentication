@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import './SignUp.css';
+
 export default class SignUp extends Component {
     state = {
         username: '',
@@ -9,7 +11,7 @@ export default class SignUp extends Component {
   
     render() {
         return (
-            <div>
+            <div className='signUp'>
                 <h2>Sign Up</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='username' />

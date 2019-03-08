@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
+import './Jokes.css';
+
 import authorization from '../auth/authorization';
 
 class Jokes extends React.Component {
@@ -10,11 +12,13 @@ class Jokes extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='jokeCont'>
                 <h2>Jokes</h2>
                 {this.state.jokes.map(joke => {
                     return (
-                        <h4>{joke.joke}</h4>
+                        <div className='joke'>
+                            <h4>{joke.joke}</h4>
+                        </div>
                     );
                 })}
             </div>
