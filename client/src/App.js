@@ -8,17 +8,16 @@ import Jokes from './jokes/Jokes';
 
 class App extends Component {
   render() {
+    const token = localStorage.getItem('jwt');
+
     return (
       <div className="App">
         <header>
           <nav>
-            <NavLink to='/signup'>Sign Up</NavLink>
-            <> | </>
-            <NavLink to='/signin'>Sign In</NavLink>
-            <> | </>
-            <NavLink to='/jokes'>Jokes</NavLink>
-            <> | </>
-            <button onClick={this.signOut}>Sign Out</button>
+            { !token ? <NavLink to='/signup'>Sign Up</NavLink> : null }
+            { !token ? <NavLink to='/signin'>Sign In</NavLink> : null }
+            { token ? <NavLink to='/jokes'>Jokes</NavLink> : null }
+            { token ? <button onClick={this.signOut}>Sign Out</button> : null }
           </nav>
         </header>
         <main>
