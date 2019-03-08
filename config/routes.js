@@ -1,4 +1,7 @@
 const axios = require('axios');
+const bcrypt = require('bcryptjs');
+
+const Users = require('./routes-model.js');
 
 const { authenticate } = require('../auth/authenticate');
 
@@ -9,7 +12,7 @@ module.exports = server => {
 };
 
 function register(req, res) {
-  // implement user registration
+  
 }
 
 function login(req, res) {
