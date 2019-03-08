@@ -17,7 +17,7 @@ export default function(Component) {
     return class Authenticated extends React.Component {
         render() {
             const token = localStorage.getItem('jwt');
-            const loggedOut = <div>Please Sign In to view the jokes.</div>;
+            const loggedOut = <div>Please sign in to view the jokes.</div>;
 
             return (
                 <> { token ? <Component {...this.props} /> : loggedOut } </>
