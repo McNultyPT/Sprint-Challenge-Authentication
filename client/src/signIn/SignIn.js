@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class SignUp extends Component {
+export default class SignIn extends Component {
     state = {
         username: '',
         password: ''
@@ -10,7 +10,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <div>
-                <h2>Sign Up</h2>
+                <h2>Sign In</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='username' />
                         <input
@@ -30,7 +30,7 @@ export default class SignUp extends Component {
                             value={this.state.password}
                             onChange={this.handleChanges}
                         />
-                     <button type='submit'>Sign Up</button>
+                     <button type='submit'>Sign In</button>
                 </form>
             </div>
         );
@@ -43,14 +43,13 @@ export default class SignUp extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        const endpoint = 'http://localhost:3300/api/register';
+        const endpoint = 'http://localhost:3300/api/login';
 
         axios
             .post(endpoint, this.state)
             .then(res => {
-                localStorage.setItem('username', this.state.username);
-                localStorage.setItem('password', this.state.password)
-                this.props.history.push('/signin');
+                localStorage.setItem('jwt', res.data.token);
+                this.props.history.push('/jokes');
             })
             .catch(err => console.log(err));
     }
